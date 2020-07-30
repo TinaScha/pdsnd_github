@@ -15,3 +15,5 @@ Links: The Python Standard Library
 
 Book from Michael Bonacina:
 Python 3: Programmieren für Einsteiger - Der leichte Weg zum Python-Experten
+
+https://py-tutorial-de.readthedocs.io/de/python-3.3/
