@@ -24,12 +24,12 @@ def get_filters():
     print('\nHello! Let\'s explore some US bikeshare data!')
     print('\nFor which city woul you like to see date? "Chicago", "New York City" or "Washington"?')
     print('\nPlease type the full name as displayed.')
-    
+
     city_input = input().lower()
     while city_input not in CITY_DATA.keys():
         print('Invalid input, please type in Chicago, New York City or Washington! Please enter City Name.')
         city_input = input().lower()
-        
+
     city = city_input
     print('-'*40)
     print('User-input: ', city.title())
@@ -39,11 +39,11 @@ def get_filters():
     print('\nWould you like to filter the data by month?')
     print('Please type in "January", "February", "March", "April", "May", "June" or "All" for no filter.')
     month_input = input().lower()
-      
+
     while month_input not in MONTH_DATA:
       print('Invalid input for month, please fill in correct input!')
       month_input = input().lower()
-      
+
     month = month_input
     print('-'*40)
     print('User-input: ', month.title())
@@ -53,11 +53,11 @@ def get_filters():
     print('\nWould you like to filter the data by day?')
     print('Please type in "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" or "All" for no filter.')
     day_input = input().lower()
-          
+
     while day_input not in DAY_DATA:
       print('Invalid input for day, please fill in correct input!')
       day_input = input().lower()
-         
+
     day = day_input
     print('-'*40)
     print('User-input: ', day.title())
@@ -86,29 +86,29 @@ def load_data(city, month, day):
     daynumber = DAY_DATA[day]
     # to check the correct variable - uncomment next line/ delete #
     # print('show daynumber:', daynumber)
-          
+
     # load data into the dataframe
     df = pd.read_csv(cityname)
-          
+
     # convert the start time column to datatime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-          
+
     # extract month and day of week from start time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.dayofweek
-          
+
     # filter by month if applicable
     if monthnumber != 0:
-          
+
     # filter by month to create the new dataframe
         df = df[df['month'] == monthnumber]
-          
+
     # filter by day of week if applicable
     if daynumber != 7:
-          
+
     # filter by day of week to create the new dataframe
         df =  df[df['day_of_week'] == daynumber]
-          
+
     # return dataframe df
     return df
 
@@ -195,40 +195,26 @@ def user_stats(df):
     except:
         print('\nData for gender not available!')
 
-    # TO DO: Display earliest, most recent, and most common year of birth
-    try:
-        earliest_user_byear = int(df['Birth_Year'].min())
-        print('\nThe earliest user birth year is: ', earliest_user_byear)
-
-        recent_user_byear = int(df['Birth_Year'].max())
-        print('\nThe earliest user birth year is: ', recent_user_byear)
-          
-        common_user_byear = int(df['Birth_Year'].mode()[0])
-        print('\nThe common user birth year is: ', common_user_byear)
-    except:
-        print('\nData for birth year not available!')
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
+    
 
     # View individual data
     view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or any key for no.\n')
     if view_data.lower() == 'yes':
         i=0
         print(df.iloc[i:i+5])
-        
+
         while view_data.lower() == 'yes':
-            
+
             view_data = input('\nWould you like to view more 5 rows of individual trip data? Enter yes or any key for no.\n')
             if view_data.lower() == 'yes':
                 i=i+5
                 print(df.iloc[i:i+5])
             else:
                 print('No further trip data requested!')
-        
+
     else:
         print('No further trip data requested!')
-        
+
 
 def main():
     while True:
