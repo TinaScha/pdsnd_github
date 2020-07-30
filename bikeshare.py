@@ -195,25 +195,6 @@ def user_stats(df):
     except:
         print('\nData for gender not available!')
 
-    
-
-    # View individual data
-    view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or any key for no.\n')
-    if view_data.lower() == 'yes':
-        i=0
-        print(df.iloc[i:i+5])
-
-        while view_data.lower() == 'yes':
-
-            view_data = input('\nWould you like to view more 5 rows of individual trip data? Enter yes or any key for no.\n')
-            if view_data.lower() == 'yes':
-                i=i+5
-                print(df.iloc[i:i+5])
-            else:
-                print('No further trip data requested!')
-
-    else:
-        print('No further trip data requested!')
 
 
 def main():
