@@ -195,39 +195,6 @@ def user_stats(df):
     except:
         print('\nData for gender not available!')
 
-    # TO DO: Display earliest, most recent, and most common year of birth
-    try:
-        earliest_user_byear = int(df['Birth_Year'].min())
-        print('\nThe earliest user birth year is: ', earliest_user_byear)
-
-        recent_user_byear = int(df['Birth_Year'].max())
-        print('\nThe earliest user birth year is: ', recent_user_byear)
-
-        common_user_byear = int(df['Birth_Year'].mode()[0])
-        print('\nThe common user birth year is: ', common_user_byear)
-    except:
-        print('\nData for birth year not available!')
-
-    print("\nThis took %s seconds." % (time.time() - start_time))
-    print('-'*40)
-
-    # View individual data
-    view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or any key for no.\n')
-    if view_data.lower() == 'yes':
-        i=0
-        print(df.iloc[i:i+5])
-
-        while view_data.lower() == 'yes':
-
-            view_data = input('\nWould you like to view more 5 rows of individual trip data? Enter yes or any key for no.\n')
-            if view_data.lower() == 'yes':
-                i=i+5
-                print(df.iloc[i:i+5])
-            else:
-                print('No further trip data requested!')
-
-    else:
-        print('No further trip data requested!')
 
 
 def main():
